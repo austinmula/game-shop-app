@@ -1,5 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  // background: #bfc0c0;
+  // background-color: #2d3142d2;
+  // background: #c9d6ff;
+  // background: -webkit-linear-gradient(
+  //   to right,
+  //   #e2e2e2,
+  //   #c9d6ff
+  // );
+  background: linear-gradient(to right, #1b1d25 #2d3142);
+  background: #2d3142;
+
+  .container {
+    max-width: 1180px;
+    margin: auto;
+  }
 }
