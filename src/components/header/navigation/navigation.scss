@@ -1,0 +1,48 @@
+@use "../../../styles/colors" as *;
+@import url("https://fonts.googleapis.com/css?family=Rock+Salt");
+
+.navigation {
+  //   -webkit-box-shadow: 0 5px 6px -6px #777;
+  //   -moz-box-shadow: 0 5px 6px -6px #777;
+  //   box-shadow: 0 5px 6px -6px #777;
+  background-color: $dark-background;
+  //   opacity: 0.9;
+  nav {
+    max-width: 1180px;
+    height: 80px;
+    margin: 0px auto;
+    display: -webkit-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    h1 {
+      margin-left: 10px;
+      margin-right: auto;
+      font-size: 24px;
+      font-family: "Rock Salt", cursive;
+      // color: $white;
+      color: $secondary;
+    }
+
+    ul {
+      display: -webkit-flex;
+      display: flex;
+      list-style: none;
+      li {
+        .nav_link {
+          margin-left: 0.3rem;
+          color: $white;
+          padding: 0.7rem 2rem;
+          border-radius: 5px;
+          text-decoration: none;
+          &:hover {
+            background-color: $primary;
+          }
+          .active {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use "../../../styles/colors" as *;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500&display=swap");
+
+.slides-container {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slideshow {
+    overflow: hidden;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    overflow: hidden;
+    // width: 60%;
+    height: 450px;
+
+    .slideshowSlider {
+      white-space: nowrap;
+      transition: ease 1000ms;
+      height: 100%;
+      .slide {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .slide-text-container {
+    height: 450px;
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.2);
+    // padding: 3rem;
+    background-color: $primary-transparent;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    // width: 40%;
+    color: $white;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    h3 {
+      // font-size: 3em;
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      // line-height: 1.7em;
+    }
+    p {
+      line-height: 2rem;
+    }
+    button {
+      // padding: 1rem 2rem;
+      background-color: $secondary;
+      border: none;
+      border-radius: 5px;
+      color: $white;
+    }
+  }
+}

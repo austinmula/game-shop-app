@@ -1,0 +1,22 @@
+@use "../../styles/colors" as *;
+.grid-container {
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //   background-color: $grey;
+  h2 {
+    color: $secondary;
+    margin-bottom: 4rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+  }
+  .card-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 4rem;
+  }
+}
