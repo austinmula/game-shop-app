@@ -1,0 +1,31 @@
+@use "../../styles/colors" as *;
+
+.contacts-content {
+  background-color: $primary-transparent;
+}
+.contacts-form {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    input,
+    textarea {
+      padding: 0.7rem 1rem;
+      width: 100%;
+      border-radius: 3px;
+      &:focus {
+        outline: 0;
+        border: 2px solid $secondary;
+      }
+    }
+
+    button[type="submit"] {
+      cursor: pointer;
+      width: 100%;
+      border: none;
+      background: $secondary;
+      color: $white;
+      padding: 0.5rem 0;
+    }
+  }
+}
