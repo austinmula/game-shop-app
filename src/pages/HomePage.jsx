@@ -1,4 +1,6 @@
-import ImageSlider from "../components/header/ImageSlider";
+import GamesContainer from "../components/grid-container/GamesContainer";
+import Hero from "../components/header/hero/Hero";
+
 const slides = [
   {
     url: "https://notagamer.net/wp-content/uploads/2023/01/Saint-League-of-Legends.jpeg",
@@ -9,17 +11,17 @@ const slides = [
     caption: "Call of Duty",
   },
   {
-    url: "https://cdn1.epicgames.com/offer/f5deacee017b4b109476933f7dd2edbd/EGS_EASPORTSFIFA23StandardEdition_EACanada_S1_2560x1440-aaf9c5273c27a485f2cce8cb7e804f5c",
-    caption: "Call of Duty",
+    url: "https://tech4gamers.com/wp-content/uploads/2022/07/God-of-War-Ragnarok.jpg",
+    caption: "God of War Ragnarok",
   },
 ];
 
 const HomePage = () => {
   return (
-    <div>
-      <div className="hero">
-        <ImageSlider slides={slides} />
-      </div>
+    <div className="container">
+      <Hero />
+      <GamesContainer title={"Top rated games"} />
+      <GamesContainer title={"Recent games"} />
     </div>
   );
 };
