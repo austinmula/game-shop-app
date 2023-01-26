@@ -1,6 +1,34 @@
+import { useState } from "react";
 import Heading from "../Heading";
 import "./contacts.scss";
+import { messages } from "../../data/messages";
+
 const ContactsContainer = () => {
+  const [Inputdata, setInputData] = useState({});
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    let currentItem = {
+      [name]: value,
+    };
+
+    const updatedInput = {
+      ...Inputdata,
+      ...currentItem,
+    };
+
+    setInputData(updatedInput);
+    console.log(Inputdata);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (Inputdata.message && Inputdata.email && Inputdata.name) {
+      messages.push(Inputdata);
+    }
+  };
   return (
     <>
       <Heading
@@ -10,40 +38,48 @@ const ContactsContainer = () => {
       <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-4 mt-9 p-6">
         <div className="contacts-content">1</div>
         <div className="contacts-form p-3">
-          <form id="contact">
+          <form onSubmit={handleSubmit}>
             <fieldset>
               <input
                 placeholder="Your name"
                 type="text"
-                tabindex="1"
+                tabIndex="1"
                 required
-                autofocus
+                autoFocus
+                name="name"
+                onChange={handleChange}
               />
             </fieldset>
             <fieldset>
               <input
                 placeholder="Email Address"
                 type="email"
-                tabindex="2"
+                tabIndex="2"
                 required
+                name="email"
+                onChange={handleChange}
               />
             </fieldset>
             <fieldset>
-              <input placeholder="Subject" type="list" tabindex="3" required />
+              <input
+                placeholder="Subject"
+                type="list"
+                tabIndex="3"
+                required
+                name="subject"
+                onChange={handleChange}
+              />
             </fieldset>
             <fieldset>
               <textarea
                 placeholder="Your Message Here...."
-                tabindex="4"
+                tabIndex="4"
                 required
+                name="message"
+                onChange={handleChange}
               ></textarea>
             </fieldset>
-            <button
-              name="submit"
-              type="submit"
-              id="contact-submit"
-              data-submit="...Sending"
-            >
+            <button name="submit" type="submit" id="contact-submit">
               Submit
             </button>
           </form>

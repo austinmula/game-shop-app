@@ -6,7 +6,7 @@ export const games = [
       "https://imgs.callofduty.com/content/dam/atvi/callofduty/cod-touchui/mw2/meta-images/reveal/mw2-reveal-meta-share.jpg",
     rating: 4,
     category: ["shooter"],
-    console: ["Playstation 5", "PlayStation 4", "PC"],
+    console: ["Playstation 5", "PlayStation 4"],
     description: "",
     price: 3500,
     publisher: "Activision",
