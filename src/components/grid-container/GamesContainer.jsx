@@ -1,4 +1,3 @@
-import { all } from "axios";
 import { useEffect, useState } from "react";
 import { games } from "../../data/games";
 import CardContainer from "../card/CardContainer";
@@ -8,14 +7,22 @@ import "./gridcontainer.scss";
 const GamesContainer = () => {
   const [allgames, setAllGames] = useState(games);
   const [filteredItems, setFilteredItems] = useState([]);
-  // const [sk, setFilterKey] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+
+  const num_pages = Math.ceil(filteredItems.length / itemsPerPage);
+
+  let lastindex = itemsPerPage * currentPage;
+  let firstindex = lastindex - itemsPerPage;
 
   useEffect(() => {
     setFilteredItems(allgames);
-    // filterByConsole();
   }, []);
 
+  const changePage = (num) => setCurrentPage(num);
+
   const filterByConsole = (sk) => {
+    changePage(1);
     const items = allgames.filter((key) => {
       if (sk === "") {
         return key;
@@ -28,6 +35,7 @@ const GamesContainer = () => {
   };
 
   const filterByName = (sk) => {
+    changePage(1);
     const items = allgames.filter((key) => {
       if (sk === "") {
         return key;
@@ -47,8 +55,19 @@ const GamesContainer = () => {
         filterByName={filterByName}
       />
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 w-full">
-        {filteredItems?.map((game) => (
+        {filteredItems?.slice(firstindex, lastindex).map((game) => (
           <CardContainer game={game} key={game.id} />
+        ))}
+      </div>
+      <div className="pagination-section">
+        {[...Array(num_pages)].map((item, index) => (
+          <div
+            key={index}
+            style={{ background: currentPage === index + 1 && "#ef8354" }}
+            onClick={() => changePage(index + 1)}
+          >
+            {index + 1}
+          </div>
         ))}
       </div>
     </div>
