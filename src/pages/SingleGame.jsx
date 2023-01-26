@@ -11,7 +11,55 @@ const SingleGame = () => {
         <div className="contacts-content">
           <img src={state.game.image} alt={state.game.name} />
         </div>
-        <div className="contacts-form p-3"></div>
+        <div className="px-3 flex flex-col gap-3">
+          <div className="py-3 px-2 bg-slate-700">
+            <h6 className="text-white">
+              Rating :{" "}
+              <span>
+                {[...Array(5)].map((item, index) => {
+                  let r = state.game.rating;
+                  return (
+                    <span
+                      key={index}
+                      style={{
+                        color: index < r ? "#FFD700" : "#dedded",
+                        fontSize: "16px",
+                      }}
+                      className="star"
+                    >
+                      &#9733;
+                    </span>
+                  );
+                })}
+              </span>
+            </h6>
+          </div>
+          <div className="py-3 px-2 bg-slate-700">
+            <h6 className="text-white">
+              Category :{" "}
+              <span>
+                {state.game.category.map((i) => (
+                  <>{i} | </>
+                ))}
+              </span>
+            </h6>
+          </div>
+          <div className="py-3 px-2 bg-slate-700">
+            <h6 className="text-white">
+              Publisher : <span>{state.game.publisher}</span>
+            </h6>
+          </div>
+          <div className="py-3 px-2 bg-slate-700">
+            <h6 className="text-white">
+              Available On :{" "}
+              <span>
+                {state.game.console.map((i) => (
+                  <>{i} | </>
+                ))}
+              </span>
+            </h6>
+          </div>
+        </div>
       </div>
     </div>
   );
