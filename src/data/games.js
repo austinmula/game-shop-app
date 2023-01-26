@@ -31,7 +31,8 @@ export const games = [
     rating: 3,
     category: ["Hack and slash", "Action-adventure"],
     console: ["PlayStation 4", "PC"],
-    description: "",
+    description:
+      " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 6500,
     publisher: "Rock Star Games",
   },
@@ -43,7 +44,8 @@ export const games = [
     rating: 5,
     category: ["Hack and slash", "Action-adventure"],
     console: ["PC"],
-    description: "",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 4500,
     publisher: "Santa Monica Studio",
   },
@@ -54,7 +56,8 @@ export const games = [
     rating: 3,
     category: ["car racing"],
     console: ["PlayStation 5"],
-    description: "",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 3500,
     publisher: "EA Sports",
   },
@@ -67,7 +70,8 @@ export const games = [
     rating: 3,
     category: ["car racing"],
     console: ["PlayStation 4"],
-    description: "",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 4500,
     publisher: "EA Sports",
   },
@@ -79,7 +83,8 @@ export const games = [
     rating: 5,
     category: ["car racing"],
     console: ["PlayStation 5", "PC"],
-    description: "",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 4500,
     publisher: "EA Sports",
   },
@@ -91,7 +96,8 @@ export const games = [
     rating: 1,
     category: ["sports"],
     console: ["PlayStation 5", "PC"],
-    description: "",
+    description:
+      " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 4500,
     publisher: "EA Sports",
   },
@@ -103,7 +109,8 @@ export const games = [
     rating: 3,
     category: ["sports"],
     console: ["PlayStation 5", "PC"],
-    description: "",
+    description:
+      " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam ab sint eius quibusdam porro!",
     price: 4500,
     publisher: "EA Sports",
   },

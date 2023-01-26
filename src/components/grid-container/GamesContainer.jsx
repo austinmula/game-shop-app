@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { games } from "../../data/games";
-import CardContainer from "../card/CardContainer";
+// import CardContainer from "../card/CardContainer";
+import ContainerInner from "./ContainerInner";
 import PillsContainer from "./filter-pills/PillsContainer";
 import "./gridcontainer.scss";
 
@@ -50,15 +51,16 @@ const GamesContainer = () => {
   return (
     <div className="grid-container">
       <PillsContainer
-        // setFilterKey={setFilterKey}
         filterByConsole={filterByConsole}
         filterByName={filterByName}
       />
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 w-full">
-        {filteredItems?.slice(firstindex, lastindex).map((game) => (
-          <CardContainer game={game} key={game.id} />
-        ))}
-      </div>
+
+      <ContainerInner
+        filteredItems={filteredItems}
+        lastindex={lastindex}
+        firstindex={firstindex}
+      />
+
       <div className="pagination-section">
         {[...Array(num_pages)].map((item, index) => (
           <div

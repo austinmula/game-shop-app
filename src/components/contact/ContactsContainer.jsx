@@ -27,6 +27,7 @@ const ContactsContainer = () => {
 
     if (Inputdata.message && Inputdata.email && Inputdata.name) {
       messages.push(Inputdata);
+      alert(JSON.stringify(messages, null, 4));
     }
   };
   return (
