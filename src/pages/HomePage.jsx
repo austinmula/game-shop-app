@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllGames } from "../actions/games";
 import ContainerInner from "../components/grid-container/ContainerInner";
 import SectionHeading from "../components/grid-container/SectionHeading";
 // import GamesContainer from "../components/grid-container/GamesContainer";
@@ -5,6 +8,13 @@ import Hero from "../components/header/hero/Hero";
 import { games } from "../data/games";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllGames());
+  }, []);
+
+  const { all_games } = useSelector((state) => state.games);
+
   function shuffle(shuffled_arr) {
     let currentIndex = shuffled_arr.length,
       randomIndex;
@@ -30,13 +40,13 @@ const HomePage = () => {
       <Hero />
       <SectionHeading title={"Recent Games"} />
       <ContainerInner
-        filteredItems={shuffle([...games])}
+        filteredItems={shuffle([...all_games])}
         lastindex={4}
         firstindex={0}
       />
       <SectionHeading title={"Top Rated Games"} />
       <ContainerInner
-        filteredItems={[...games].sort((a, b) => b.rating - a.rating)}
+        filteredItems={[...all_games].sort((a, b) => b.rating - a.rating)}
         lastindex={4}
         firstindex={0}
       />
