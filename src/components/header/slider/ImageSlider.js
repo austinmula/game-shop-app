@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { games } from "../../../data/games";
+// import { games } from "../../../data/games";
 import "./slider.scss";
 
-const ImageSlider = () => {
+const ImageSlider = ({ games }) => {
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef(null);
 

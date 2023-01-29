@@ -1,10 +1,10 @@
 import "./hero.scss";
 import ImageSlider from "../slider/ImageSlider";
 
-const Hero = () => {
+const Hero = ({ games }) => {
   return (
     <div className="hero">
-      <ImageSlider />
+      <ImageSlider games={games} />
     </div>
   );
 };

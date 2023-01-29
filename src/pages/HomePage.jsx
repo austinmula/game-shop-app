@@ -37,7 +37,7 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <Hero />
+      <Hero games={all_games} />
       <SectionHeading title={"Recent Games"} />
       <ContainerInner
         filteredItems={shuffle([...all_games])}

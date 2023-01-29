@@ -19,7 +19,7 @@ const CardContainer = ({ game }) => {
         </div>
         <div className="card-body">
           <h3>{game.name}</h3>
-          <small>kshs. 2,500</small>
+          <small>kshs. {game.price}</small>
         </div>
         <div className="card-footer">
           <div className="rating">
