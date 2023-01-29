@@ -1,15 +1,26 @@
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchGameByID } from "../actions/games";
 import Heading from "../components/Heading";
 
 const SingleGame = () => {
-  let { state } = useLocation();
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGameByID(id));
+  }, []);
+
+  const { game } = useSelector((state) => state.games);
+
   return (
     <div className="container">
-      <Heading title={state.game.name} subtitle={state.game.description} />
+      <Heading title={game.name} subtitle={game.description} />
 
       <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-4 mt-9 p-6">
         <div className="contacts-content">
-          <img src={state.game.image} alt={state.game.name} />
+          <img src={game.image} alt={game.name} />
         </div>
         <div className="px-3 flex flex-col gap-3">
           <div className="py-3 px-2 bg-slate-700">
@@ -17,7 +28,7 @@ const SingleGame = () => {
               Rating :{" "}
               <span>
                 {[...Array(5)].map((item, index) => {
-                  let r = state.game.rating;
+                  let r = game?.rating;
                   return (
                     <span
                       key={index}
@@ -34,31 +45,31 @@ const SingleGame = () => {
               </span>
             </h6>
           </div>
-          <div className="py-3 px-2 bg-slate-700">
+          {/* <div className="py-3 px-2 bg-slate-700">
             <h6 className="text-white">
               Category :{" "}
               <span>
-                {state.game.category.map((i) => (
-                  <>{i} | </>
+                {game.category.map((i) => (
+                  <span key={i.name}>{i.name} | </span>
                 ))}
               </span>
             </h6>
-          </div>
+          </div> */}
           <div className="py-3 px-2 bg-slate-700">
             <h6 className="text-white">
-              Publisher : <span>{state.game.publisher}</span>
+              Publisher : <span>{game.publisher}</span>
             </h6>
           </div>
-          <div className="py-3 px-2 bg-slate-700">
+          {/* <div className="py-3 px-2 bg-slate-700">
             <h6 className="text-white">
               Available On :{" "}
               <span>
-                {state.game.console.map((i) => (
-                  <>{i} | </>
+                {game.consoles.map((i) => (
+                  <span key={i.name}>{i.name} | </span>
                 ))}
               </span>
             </h6>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

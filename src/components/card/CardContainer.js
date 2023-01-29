@@ -13,7 +13,7 @@ const CardContainer = ({ game }) => {
     <>
       <div className="card">
         <div className="card-header">
-          <Link to={`/games/${game.id}`} state={{ game }}>
+          <Link to={`/games/${game.id}`} state={{ id: game.id }}>
             <img src={game.image} alt={game.name} />
           </Link>
         </div>

@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { games } from "../../data/games";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllGames } from "../../actions/games";
+// import { games } from "../../data/games";
 // import CardContainer from "../card/CardContainer";
 import ContainerInner from "./ContainerInner";
 import PillsContainer from "./filter-pills/PillsContainer";
 import "./gridcontainer.scss";
 
 const GamesContainer = () => {
-  const [allgames, setAllGames] = useState(games);
+  // const [allgames, setAllGames] = useState(games);
+  const dispatch = useDispatch();
+
+  const { all_games } = useSelector((state) => state.games);
+
   const [filteredItems, setFilteredItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const num_pages = Math.ceil(filteredItems.length / itemsPerPage);
 
@@ -17,14 +23,15 @@ const GamesContainer = () => {
   let firstindex = lastindex - itemsPerPage;
 
   useEffect(() => {
-    setFilteredItems(allgames);
+    dispatch(fetchAllGames());
+    setFilteredItems(all_games);
   }, []);
 
   const changePage = (num) => setCurrentPage(num);
 
   const filterByConsole = (sk) => {
     changePage(1);
-    const items = allgames.filter((key) => {
+    const items = all_games.filter((key) => {
       if (sk === "") {
         return key;
       } else if (key.console.some((el) => el.includes(sk))) {
@@ -37,7 +44,7 @@ const GamesContainer = () => {
 
   const filterByName = (sk) => {
     changePage(1);
-    const items = allgames.filter((key) => {
+    const items = all_games.filter((key) => {
       if (sk === "") {
         return key;
       } else if (key.name.toLocaleLowerCase().includes(sk)) {

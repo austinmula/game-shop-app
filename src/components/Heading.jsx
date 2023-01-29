@@ -14,6 +14,8 @@ const Heading = ({ title, subtitle }) => {
 const paragraphStyle = {
   fontFamily: `"Poppins", sans-serif`,
   color: "#bfc0c0",
+  textAlign: "center",
+  maxWidth: "700px",
 };
 
 const headingStyle = {
