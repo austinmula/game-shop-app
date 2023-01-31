@@ -1,14 +1,19 @@
 // import "./admin.scss";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { createGame } from "../../actions/games";
 
 export default function AddMovieForm() {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    await dispatch(createGame(data));
+  };
 
   return (
     <div className="game ">
@@ -131,7 +136,7 @@ export default function AddMovieForm() {
           <div className="flex flex-wrap gap-x-5">
             <label
               className="block w-full uppercase tracking-wide text-gray-100 text-xs font-bold mb-2"
-              htmlFor="game-console"
+              htmlFor="game-consoles"
             >
               Console
             </label>
@@ -141,7 +146,7 @@ export default function AddMovieForm() {
                   type="checkbox"
                   value="3"
                   class="w-4 h-4 border-gray-300 rounded"
-                  {...register("console")}
+                  {...register("consoles")}
                 />
                 <label
                   for="disabled-checked-checkbox"
@@ -157,7 +162,7 @@ export default function AddMovieForm() {
                   type="checkbox"
                   value="1"
                   class="w-4 h-4 border-gray-300 rounded"
-                  {...register("console")}
+                  {...register("consoles")}
                 />
                 <label
                   for="disabled-checked-checkbox"
@@ -173,7 +178,7 @@ export default function AddMovieForm() {
                   type="checkbox"
                   value="2"
                   class="w-4 h-4 border-gray-300 rounded"
-                  {...register("console")}
+                  {...register("consoles")}
                 />
                 <label
                   for="disabled-checked-checkbox"
@@ -190,7 +195,7 @@ export default function AddMovieForm() {
           <div className="flex flex-wrap gap-x-5">
             <label
               className="block w-full uppercase tracking-wide text-gray-100 text-xs font-bold mb-2"
-              htmlFor="game-console"
+              htmlFor="game-consoles"
             >
               Category
             </label>

@@ -7,3 +7,7 @@ export const getAllGames = () => {
 export const getGameById = (id) => {
   return http.get("/api/games/" + id);
 };
+
+export const createNewGame = (data) => {
+  return http.post("/api/games/add", data);
+};
