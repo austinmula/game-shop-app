@@ -6,7 +6,7 @@ export default function ContainerInner({
 }) {
   return (
     <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 w-full mt-10">
-      {filteredItems?.slice(firstindex, lastindex).map((game) => (
+      {filteredItems.map((game) => (
         <CardContainer game={game} key={game.id} />
       ))}
     </div>

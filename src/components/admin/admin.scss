@@ -1,5 +1,29 @@
 @use "../../styles/colors" as *;
 
+.card-container {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  color: $grey;
+  .card_cust {
+    background: $primary;
+    position: relative;
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.2);
+    height: 150px;
+    border-radius: 5px;
+    padding: 1rem;
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .card-num {
+      position: absolute;
+      font-size: 2.3rem;
+      padding: 0 1rem;
+      right: 0;
+    }
+  }
+}
 .game {
   width: 80%;
   margin: auto;

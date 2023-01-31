@@ -1,17 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchGameByID } from "../actions/games";
 import Heading from "../components/Heading";
 
 const SingleGame = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
-
+  const { id } = useParams();
   useEffect(() => {
     dispatch(fetchGameByID(id));
-  }, []);
-
+  }, [dispatch, id]);
   const { game } = useSelector((state) => state.games);
 
   return (
@@ -45,31 +43,35 @@ const SingleGame = () => {
               </span>
             </h6>
           </div>
-          {/* <div className="py-3 px-2 bg-slate-700">
+          <div className="py-3 px-2 bg-slate-700">
             <h6 className="text-white">
               Category :{" "}
               <span>
-                {game.category.map((i) => (
-                  <span key={i.name}>{i.name} | </span>
-                ))}
+                {game.category && game.category.length > 0
+                  ? game.category.map((i) => (
+                      <span key={i.name}>{i.name} | </span>
+                    ))
+                  : null}
               </span>
             </h6>
-          </div> */}
+          </div>
           <div className="py-3 px-2 bg-slate-700">
             <h6 className="text-white">
               Publisher : <span>{game.publisher}</span>
             </h6>
           </div>
-          {/* <div className="py-3 px-2 bg-slate-700">
+          <div className="py-3 px-2 bg-slate-700">
             <h6 className="text-white">
               Available On :{" "}
               <span>
-                {game.consoles.map((i) => (
-                  <span key={i.name}>{i.name} | </span>
-                ))}
+                {game.consoles && game.consoles.length > 0
+                  ? game?.consoles.map((i) => (
+                      <span key={i.name}>{i.name} | </span>
+                    ))
+                  : null}
               </span>
             </h6>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

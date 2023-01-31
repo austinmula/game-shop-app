@@ -13,9 +13,10 @@ const GamesContainer = () => {
 
   const { all_games } = useSelector((state) => state.games);
 
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(all_games);
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(10);
 
   const num_pages = Math.ceil(filteredItems.length / itemsPerPage);
 
@@ -25,7 +26,7 @@ const GamesContainer = () => {
   useEffect(() => {
     dispatch(fetchAllGames());
     setFilteredItems(all_games);
-  }, []);
+  }, [dispatch, filteredItems]);
 
   const changePage = (num) => setCurrentPage(num);
 
