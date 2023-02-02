@@ -1,9 +1,23 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 import "./card.scss";
 const CardContainer = ({ game }) => {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {});
+
+  const handleShow = () => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    } else {
+      setShow(true);
+    }
+  };
 
   const handleClose = () => {
     setShow(false);
@@ -39,7 +53,7 @@ const CardContainer = ({ game }) => {
               );
             })}
           </div>
-          <a className="py-2 px-3 text-sm" onClick={() => setShow(true)}>
+          <a className="py-2 px-3 text-sm" onClick={handleShow}>
             Buy
           </a>
         </div>
@@ -47,6 +61,7 @@ const CardContainer = ({ game }) => {
       {show ? (
         <Modal
           title={game.name}
+          id={game.id}
           onClose={handleClose}
           show={show}
           price={game.price}

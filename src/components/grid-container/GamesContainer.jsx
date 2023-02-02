@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllGames } from "../../actions/games";
 // import { games } from "../../data/games";
 // import CardContainer from "../card/CardContainer";
-import ContainerInner from "./ContainerInner";
+// import ContainerInner from "./ContainerInner";
+
 import PillsContainer from "./filter-pills/PillsContainer";
 import "./gridcontainer.scss";
+const ContainerInner = React.lazy(() => import("./ContainerInner"));
 
 const GamesContainer = () => {
   // const [allgames, setAllGames] = useState(games);
@@ -16,7 +18,7 @@ const GamesContainer = () => {
   const [filteredItems, setFilteredItems] = useState(all_games);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(8);
 
   const num_pages = Math.ceil(filteredItems.length / itemsPerPage);
 
@@ -25,8 +27,8 @@ const GamesContainer = () => {
 
   useEffect(() => {
     dispatch(fetchAllGames());
-    setFilteredItems(all_games);
-  }, [dispatch, filteredItems]);
+    // setFilteredItems(all_games);
+  }, [dispatch]);
 
   const changePage = (num) => setCurrentPage(num);
 
@@ -63,11 +65,13 @@ const GamesContainer = () => {
         filterByName={filterByName}
       />
 
-      <ContainerInner
-        filteredItems={filteredItems}
-        lastindex={lastindex}
-        firstindex={firstindex}
-      />
+      <Suspense fallback={<div>Please wait...</div>}>
+        <ContainerInner
+          filteredItems={filteredItems}
+          lastindex={lastindex}
+          firstindex={firstindex}
+        />
+      </Suspense>
 
       <div className="pagination-section">
         {[...Array(num_pages)].map((item, index) => (

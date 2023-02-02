@@ -1,6 +1,7 @@
 // import "./admin.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { createGame } from "../../actions/games";
 
 export default function AddMovieForm() {
@@ -8,11 +9,17 @@ export default function AddMovieForm() {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    await dispatch(createGame(data));
+    try {
+      await dispatch(createGame(data));
+      reset();
+      toast.success("Added Successfully");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -78,7 +85,7 @@ export default function AddMovieForm() {
                 Publisher
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-100 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white "
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white "
                 id="publisher"
                 type="text"
                 placeholder="publisher name"

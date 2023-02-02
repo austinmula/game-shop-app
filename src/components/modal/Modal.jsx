@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import "./modal.scss";
 const Modal = (props) => {
@@ -7,13 +10,30 @@ const Modal = (props) => {
     console.log(props);
   }, []);
 
-  const handlePurchase = () => {
-    props.onClose();
-    setTimeout(() => {
-      alert(
-        JSON.stringify("You have successfuly purchased " + props.title, null, 4)
+  const { user } = useSelector((state) => state.auth);
+
+  const handlePurchase = async () => {
+    // props.onClose();
+    try {
+      const data = {
+        game_id: props.id,
+        user_id: user.user_id,
+        amount: props.price,
+      };
+
+      console.log(data);
+      const response = await axios.post(
+        "http://localhost:4001/api/payments/add",
+        data
       );
-    }, 1000);
+
+      if (response.data) {
+        props.onClose();
+        toast.success("Payment Success");
+      }
+    } catch (error) {
+      toast(error.message);
+    }
   };
 
   return (

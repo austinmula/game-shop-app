@@ -11,3 +11,7 @@ export const getGameById = (id) => {
 export const createNewGame = (data) => {
   return http.post("/api/games/add", data);
 };
+
+export const deleteGame = (id) => {
+  return http.delete("/api/games/" + id);
+};

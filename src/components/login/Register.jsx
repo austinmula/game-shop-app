@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../../actions/auth";
+
 import "./login.scss";
-export default function LoginContainer() {
+export default function Register() {
   const [Inputdata, setInputData] = useState({});
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -23,24 +22,29 @@ export default function LoginContainer() {
     setInputData(updatedInput);
   };
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (Inputdata.password && Inputdata.email) {
-      dispatch(loginUser(Inputdata));
+      registerUser(Inputdata);
     }
+  };
+
+  const registerUser = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4001/auth/register",
+        data
+      );
+      if (response.data) {
+        navigate("/login");
+      }
+    } catch (error) {}
   };
   return (
     <div className="login-container">
       <div className="login-form">
-        <h3>Login</h3>
+        <h3>Register</h3>
         <form onSubmit={handleSubmit}>
           <fieldset>
             <input
@@ -49,6 +53,16 @@ export default function LoginContainer() {
               tabIndex="2"
               required
               name="email"
+              onChange={handleChange}
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              placeholder="User Name"
+              type="name"
+              tabIndex="2"
+              required
+              name="name"
               onChange={handleChange}
             />
           </fieldset>
@@ -68,7 +82,7 @@ export default function LoginContainer() {
           </button>
         </form>
         <p className="pt-4 text-sm">
-          Don't have an acoount ? <Link to="/register">Sign Up</Link>{" "}
+          Already have an account ? <Link to="/login">Log in</Link>{" "}
         </p>
       </div>
     </div>

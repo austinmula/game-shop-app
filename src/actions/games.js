@@ -1,6 +1,7 @@
-import { GET_GAMES, GET_ONE_GAME, CREATE_GAME } from "./type";
+import { GET_GAMES, GET_ONE_GAME, CREATE_GAME, DELETE_GAME } from "./type";
 import {
   createNewGame,
+  deleteGame,
   getAllGames,
   getGameById,
 } from "../services/games.service";
@@ -42,5 +43,18 @@ export const createGame = (data) => async (dispatch) => {
     return Promise.resolve(res.data);
   } catch (err) {
     return Promise.reject(err);
+  }
+};
+
+export const deleteGameOfId = (id) => async (dispatch) => {
+  try {
+    await deleteGame(id);
+
+    dispatch({
+      type: DELETE_GAME,
+      payload: { id },
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
